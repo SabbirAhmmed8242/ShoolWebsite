@@ -1,0 +1,49 @@
+.Banner {
+    text-align: center;
+    background-color: #f5f5f5;
+    padding: 60px 20px;
+}
+
+.apply-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.about-section, .teachers-section {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.teacher-card {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.teacher-image {
+    width: 100px;
+    height: 100px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.teacher-info h3 {
+    margin: 0;
+    color: #333;
+}
+
+.teacher-info p {
+    margin: 4px 0;
+    color: #555;
+}

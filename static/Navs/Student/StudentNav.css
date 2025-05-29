@@ -1,0 +1,25 @@
+.STD-navbar{
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.links{
+    display: flex;
+    list-style: none;
+    gap: 22px;
+}
+
+.links li a{
+    text-decoration: none;
+    color: white;
+    padding: 8px 12px;
+    transition: background-color 0.4s;
+}
+.links li a:hover{
+    background-color: darkred;
+    border-radius: 7px;
+}
