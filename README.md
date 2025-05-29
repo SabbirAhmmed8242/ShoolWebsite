@@ -43,7 +43,7 @@ To prevent unauthorized access, the teacher registration process includes a Secr
 
 
 🚀 How to Run the Project Locally
-      01. git clone https://github.com/your-username/SchoolWebsite.git
+      01. git clone https://github.com/SabbirAhmmed8242/ShoolWebsite.git
       02. cd SchoolWebsite
       03. python manage.py migrate
       04. python manage.py runserver
