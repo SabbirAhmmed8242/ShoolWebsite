@@ -1,6 +1,6 @@
-🎓 SchoolWebsite
-A simple school management system built with Django.
-👉 Still under active development.
+<h1>🎓 SchoolWebsite</h1>
+A simple school management system built with Django.<br>
+👉 Still under active development.<br>
 
 
 
@@ -24,13 +24,13 @@ To prevent unauthorized access, the teacher registration process includes a Secr
 
 
 
-✨ Features (Planned / In Progress)
-       ✅ Admin panel to manage teachers, students, and classes
-       ✅ Secure teacher registration with secret code
-       ✅ Student management system
-       🚫 Update Delete student or teacher information
-       🚫 Class scheduling
-       🚫 Grades and reports system
+✨ Features (Planned / In Progress)<br>
+       ✅ Admin panel to manage teachers, students, and classes<br>
+       ✅ Secure teacher registration with secret code<br>
+       ✅ Student management system<br>
+       🚫 Update Delete student or teacher information<br>
+       🚫 Class scheduling<br>
+       🚫 Grades and reports system<br>
 
 
 
