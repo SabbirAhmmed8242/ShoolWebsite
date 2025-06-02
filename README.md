@@ -10,17 +10,17 @@ A simple school management system built with Django.<br>
 
 
 
-👨‍🏫 Teacher Test Account
-   - Username: Sabbir Ahmmed
-   - Password: 147258
-   - Mobile Number: 01782425635
+👨‍🏫 Teacher Test Account<br>
+   - Username: Sabbir Ahmmed<br>
+   - Password: 147258<br>
+   - Mobile Number: 1782425635(Use mobile number without 0)<br>
 
 
-🔐 Teacher Registration & Secret Code System
-To prevent unauthorized access, the teacher registration process includes a Secret Number field.
-       ✅ Only the admin can generate and manage secret numbers.
-       🚫 Without a valid secret number, a teacher cannot register.
-       🔒 This feature ensures that only authorized persons can register as teachers.
+🔐 Teacher Registration & Secret Code System<br>
+To prevent unauthorized access, the teacher registration process includes a Secret Number field.<br>
+       ✅ Only the admin can generate and manage secret numbers.<br>
+       🚫 Without a valid secret number, a teacher cannot register.<br>
+       🔒 This feature ensures that only authorized persons can register as teachers.<br>
 
 
 
@@ -34,29 +34,29 @@ To prevent unauthorized access, the teacher registration process includes a Secr
 
 
 
-🛠️ Technologies Used
-      ✅ Backend: Django (Python)
-      ✅ Database: SQLite (default)
-      ✅ Frontend: HTML, CSS (under development)
-      ✅ Authentication: Custom auth system
+🛠️ Technologies Used<br>
+      ✅ Backend: Django (Python)<br>
+      ✅ Database: SQLite (default)<br>
+      ✅ Frontend: HTML, CSS (under development)<br>
+      ✅ Authentication: Custom auth system<br>
 
 
 
-🚀 How to Run the Project Locally
-      01. git clone https://github.com/SabbirAhmmed8242/ShoolWebsite.git
-      02. cd SchoolWebsite
-      03. python manage.py migrate
-      04. python manage.py runserver
+🚀 How to Run the Project Locally<br>
+      01. git clone https://github.com/SabbirAhmmed8242/ShoolWebsite.git<br>
+      02. cd SchoolWebsite<br>
+      03. python manage.py migrate<br>
+      04. python manage.py runserver<br>
 
 
-📌 Note:
-      🚧 This project is still under development.
-      Please ignore any UI bugs or incomplete features. Everything will be fixed step by step.
+📌 Note:<br>
+      🚧 This project is still under development.<br>
+      Please ignore any UI bugs or incomplete features. Everything will be fixed step by step.<br>
 
-📞 Contact:
-If you have any questions or suggestions, feel free to reach out.
+📞 Contact:<br>
+If you have any questions or suggestions, feel free to reach out.<br>
 
-                                                                                                      Happy Coding! 💻
+                                                                          <h1>Happy Coding! 💻</h1>
                                                                                                       
                                                                                                       
                                                                                                       
