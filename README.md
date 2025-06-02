@@ -56,7 +56,7 @@ To prevent unauthorized access, the teacher registration process includes a Secr
 📞 Contact:<br>
 If you have any questions or suggestions, feel free to reach out.<br>
 
-                                                                          <h1>Happy Coding! 💻</h1>
+                                                <h1>Happy Coding! 💻</h1>
                                                                                                       
                                                                                                       
                                                                                                       
