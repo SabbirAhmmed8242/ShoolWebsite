@@ -1,0 +1,63 @@
+{% extends "allUserNavbar.html" %}
+{% block title %}Apply{% endblock title %}
+{% block content %}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container my-5">
+  <div class="card shadow-sm mx-auto" style="max-width: 600px; background-color: #fdf5e6;">
+    <div class="card-body">
+      <h2 class="card-title text-center mb-4">Apply for Admission</h2>
+        {% if Succes %}
+        <div class="alert alert-success" role="alert">{{Succes}}</div>
+        {% endif %}
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label class="form-label">Enter your name:</label>
+          <input type="text" name="name" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Enter Father's name:</label>
+          <input type="text" name="father" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Enter Mother's name:</label>
+          <input type="text" name="Mother" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Enter mobile number:</label>
+          <input type="tel" name="number" class="form-control" pattern="[0-9]{11}" placeholder="e.g., 01XXXXXXXXX" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Choose class you want to admit to:</label>
+          <select name="class" class="form-select" required>
+            <option value="" disabled selected>Select class</option>
+            <option value="Six">Six</option>
+            <option value="Seven">Seven</option>
+            <option value="Eight">Eight</option>
+            <option value="Nine">Nine</option>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label">Upload your photo:</label>
+          <input type="file" name="image" accept="image/*" class="form-control" required>
+        </div>
+
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary btn-block">Apply</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock content %}

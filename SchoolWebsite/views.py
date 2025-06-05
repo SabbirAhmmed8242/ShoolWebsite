@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from Teachers.models import TeacherData,NewApplyStudent
+from Teachers.models import TeacherDatas,NewApplyStudent
 
 def home(request):
-    teacherData = TeacherData.objects.all()
+    teacherData = TeacherDatas.objects.all()
     return render(request , 'Home.html',{'Teachers':teacherData})
 
 def Apply_student(request):

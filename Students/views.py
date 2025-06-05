@@ -15,8 +15,6 @@ def student_login(request):
         studentID = request.POST.get('StudentID')
         password = request.POST.get('password')
         request.session['studenID'] = studentID
-        print(studentID)
-        print(password)
         try:
             Student = Student_login_details.objects.get(studentID = studentID)
             if password == Student.password:

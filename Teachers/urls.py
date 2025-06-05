@@ -15,4 +15,6 @@ urlpatterns = [
     path('EditeStudentDataForm/', views.EditeStudentDataForm, name='EditeStudentDataForm'),
     path('AllStudent/', AllStudent.as_view(), name='AllStudentData'),
     # path('AllStudent/', views.AllStudent, name='AllStudentData'),
+
+    path('UpdateForm/', views.DeleteInfo, name='DeleteUpdateInfo')
 ]

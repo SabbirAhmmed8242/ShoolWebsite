@@ -1,0 +1,48 @@
+{% extends "TeacherNav.html" %}
+{% block title %}Join as Teacher{% endblock title %}
+
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <h2 class="mb-4 text-center text-primary">Teacher Registration</h2>
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label for="username" class="form-label">Full Name</label>
+                <input type="text" class="form-control" name="username" id="username" placeholder="Ex. Kamal Ali" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="NID" class="form-label">NID Number</label>
+                <input type="number" class="form-control" name="NID" id="NID" placeholder="Ex. 100010101" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="MoNumber" class="form-label">Mobile Number</label>
+                <input type="number" class="form-control" name="MoNumber" id="MoNumber" placeholder="Without +880, Ex. 1718161514" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="MoNumber" class="form-label">Password</label>
+                <input type="number" class="form-control" name="password" id="MoNumber" placeholder="Ex. MoBin125#$" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="secret_number" class="form-label">Secret Number (Provided by School)</label>
+                <input type="text" class="form-control" name="secret_number" id="secret_number" placeholder="Ex. TX-2024-1001" required>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+
+            {% if err %}
+            <div>{{err}}</div>
+            {% endif %}
+        </form>
+    </div>
+</div>
+{% endblock content %}

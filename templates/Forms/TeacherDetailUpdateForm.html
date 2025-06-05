@@ -1,0 +1,63 @@
+{% extends "TeacherNav.html" %}
+{% block title %}Update Info{% endblock title %}
+{% block content %}
+
+<!-- Background with gradient -->
+<style>
+  body {
+    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+    min-height: 100vh;
+  }
+  .glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+  }
+  .glass-card input {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
+  }
+  .btn-fancy {
+    background: linear-gradient(to right, #ffbb00, #ffdd55);
+    color: #333;
+    border: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  .btn-fancy:hover {
+    background: linear-gradient(to right, #ffdd55, #ffbb00);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 200, 0, 0.4);
+  }
+</style>
+
+<div class="container d-flex align-items-center justify-content-center py-5">
+  <div class="col-md-7">
+    <div class="card glass-card p-4">
+      <div class="card-header text-center bg-transparent border-0 mb-3">
+        <h3 class="fw-bold text-dark">
+          <i class="bi bi-person-check-fill me-2 text-warning"></i>
+          Update Teacher Info
+        </h3>
+        <p class="text-muted mb-0 small">Please enter your ST-CODE to update your information.</p>
+      </div>
+      <div class="card-body">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="mb-4">
+            <label for="stcode" class="form-label fw-semibold">ST-CODE</label>
+            <input type="text" name="ST-CODE" id="stcode" class="form-control form-control-lg rounded-4" placeholder="e.g. ST-XX-20XX-XX-1XXX" required>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-fancy btn-lg rounded-pill">
+              <i class="bi bi-arrow-up-right-circle-fill me-2"></i>Update Now
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

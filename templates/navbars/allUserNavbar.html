@@ -63,8 +63,16 @@
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-8 text-gray-800 font-medium">
           <a href="{% url 'Home' %}" class="nav-link hover:text-blue-600">Home</a>
-          <a href="{% url 'Student' %}" class="nav-link hover:text-blue-600">Student</a>
+          {% if request.session.student_id %}
+          <a href="{% url 'st-dashbord' %}" class="nav-link hover:text-blue-600">Dashboard</a>
+          <a href="{% url 'st-logout' %}" class="btn btn-outline-danger rounded-pill px-4 py-2 fw-semibold shadow-sm">LogOut</a>
+          {% elif request.session.teacher_login%}
+          <a href="{% url 'th-dashbord' %}" class="nav-link hover:text-blue-600">Dashboard</a>
+          <a href="{% url 'th-logout' %}" class="btn btn-outline-danger rounded-pill px-4 py-2 fw-semibold shadow-sm">LogOut</a>
+          {% else %}
           <a href="{% url 'Teacher' %}" class="nav-link hover:text-blue-600">Teacher</a>
+          <a href="{% url 'Student' %}" class="nav-link hover:text-blue-600">Student</a>
+          {% endif %} 
           <a href="{% url 'ResultFor' %}" class="nav-link hover:text-blue-600">Result</a>
           <a href="#" class="nav-link hover:text-blue-600">About</a>
 

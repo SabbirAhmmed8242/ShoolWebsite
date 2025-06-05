@@ -61,6 +61,11 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'templates'),
                  os.path.join(BASE_DIR, 'templates/navbars'),
                  os.path.join(BASE_DIR, 'templates/footer'),
+                 os.path.join(BASE_DIR, 'templates/Forms'),
+                 os.path.join(BASE_DIR, 'templates/Student'),
+                 os.path.join(BASE_DIR, 'templates/Teachers'),
+                 os.path.join(BASE_DIR, 'templates/Result/TeacherSide'),
+                 os.path.join(BASE_DIR, 'templates/Result/StudentSide'),
                  
                  os.path.join(BASE_DIR, 'Students/templates'),
                  os.path.join(BASE_DIR, 'Students/templates/students'),

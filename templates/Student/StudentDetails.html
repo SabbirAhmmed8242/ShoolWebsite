@@ -1,0 +1,68 @@
+{% extends "StudentsNav.html" %}
+{% block title %}Details{% endblock title %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="card shadow rounded-4 p-4">
+        <h3 class="mb-4 text-center">Student Information Form</h3>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="studentID" class="form-label">Student ID</label>
+                    <input type="text" class="form-control" id="studentID" name="studentID" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="name" class="form-label">Student Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="father" class="form-label">Father's Name</label>
+                    <input type="text" class="form-control" id="father" name="father" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="mother" class="form-label">Mother's Name</label>
+                    <input type="text" class="form-control" id="mother" name="mother" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="mobile" class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" id="mobile" name="mobile" required>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="cls" class="form-label">Class</label>
+                <select class="form-select" id="cls" name="cls" required>
+                    <option value="">Select Class</option>
+                    <option value="Six">Six</option>
+                    <option value="Seven">Seven</option>
+                    <option value="Eight">Eight</option>
+                    <option value="Nine">Nine</option>
+                    <option value="Ten">Ten</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="image" class="form-label">Upload Image</label>
+                <input class="form-control" type="file" id="image" name="image" accept="image/*" required>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary px-5">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

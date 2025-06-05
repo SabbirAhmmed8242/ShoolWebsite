@@ -1,0 +1,110 @@
+{% extends "StudentsNav.html" %}
+{% load static %}
+{% block title %}
+Dashboard
+{% endblock title %}
+
+{% block Content %}
+<style>
+  .dashboard-section {
+    background-color: #f8f9fa;
+    padding: 60px 0;
+  }
+
+  .dashboard-card {
+    border: none;
+    border-radius: 16px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  .dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+
+  .dashboard-btn {
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+  .card-icon {
+    font-size: 2.2rem;
+    color: #0d6efd;
+    margin-bottom: 10px;
+  }
+
+  .profile-img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #0d6efd;
+  }
+</style>
+
+<div class="dashboard-section">
+  <div class="container">
+    <h2 class="text-center mb-5 fw-bold">🎓 Welcome to Your Dashboard</h2>
+
+    <!-- Dashboard Buttons -->
+    <div class="row g-4 text-center mb-5">
+      <!-- Home -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card dashboard-card p-4">
+          <div class="card-icon">🏠</div>
+          <h5 class="mb-3">Home</h5>
+          <a href="{% url 'Home' %}" class="btn btn-outline-primary dashboard-btn">Go</a>
+        </div>
+      </div>
+
+      <!-- View -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card dashboard-card p-4">
+          <div class="card-icon">📄</div>
+          <h5 class="mb-3">View Result</h5>
+          <a href="{% url 'ResultFor' %}" class="btn btn-outline-success dashboard-btn">View</a>
+        </div>
+      </div>
+
+      <!-- Marksheet -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card dashboard-card p-4">
+          <div class="card-icon">📊</div>
+          <h5 class="mb-3">Marksheet</h5>
+          <a href="#" class="btn btn-outline-warning text-dark dashboard-btn">Download</a>
+        </div>
+      </div>
+
+      <!-- Logout -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card dashboard-card p-4">
+          <div class="card-icon">🔓</div>
+          <h5 class="mb-3">Logout</h5>
+          <a href="{% url 'st-logout' %}" class="btn btn-outline-danger dashboard-btn">Logout</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Card -->
+    <hr class="my-4">
+    <div class="row justify-content-center">
+      <div class="col-md-7">
+        <div class="card dashboard-card p-4 d-flex align-items-center flex-md-row flex-column text-center text-md-start">
+          <img src="" alt="Profile"
+               class="profile-img mb-3 mb-md-0 me-md-4">
+          <div>
+            <h4 class="fw-semibold mb-1"></h4>
+            <p class="mb-1 text-muted">🎓 Student ID: </p>
+            <p class="mb-0 text-muted">📧 </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock Content %}

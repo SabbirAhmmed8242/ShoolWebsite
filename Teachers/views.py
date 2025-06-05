@@ -1,9 +1,13 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse
-from . models import teacher_login,secret_number_and_NID,TeacherData
+from . models import teacher_login,secret_number_and_NID,TeacherDatas
 from Results.models import ClassSixResults,ClassSevenResults,ClassEightResults,ClassTenResults,ClassNineResults
 from Students.models import StudentDetails
 from django.views.generic import ListView, UpdateView, DeleteView, CreateView
+from django.urls import reverse_lazy
+from django import forms
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import never_cache
 def teachers(request):
     return render(request, 'Teachers.html')
 
@@ -14,7 +18,7 @@ def th_login(request):
         nb_number  = request.POST.get("nbNumber").strip()
         request.session['username'] = username
         try:
-            Teacher = teacher_login.objects.get(username = username)
+            Teacher = teacher_login.objects.filter(username = username).first()
         except teacher_login.DoesNotExist:
             return HttpResponse('username invalid')
 
@@ -29,6 +33,7 @@ def th_login(request):
         return redirect('th-dashbord')
     return render(request, 'TeacherLogin.html')
 
+@never_cache
 def addResult(request):
     if 'teacher_login' not in request.session:
         return redirect('teacher-login')
@@ -139,11 +144,13 @@ def AddResultDataForm(request):
     return render(request, 'AddResultDataForm.html')
 
 def th_logout(request):
-    try:
-        del request.session['teacher_login']
-        return redirect('teacher-login')
-    except TypeError:
-        pass
+    request.session.flush()
+    return redirect('teacher-login')
+    # try:
+    #     del request.session['teacher_login']
+    #     return redirect('teacher-login')
+    # except TypeError:
+    #     pass
 
 def th_reg(request):
     if request.method == "POST":
@@ -152,6 +159,8 @@ def th_reg(request):
         MoNumber = request.POST.get('MoNumber')
         ST_number = request.POST.get('secret_number')
         password = request.POST.get('password')
+
+        request.session['ST_NUMBER'] = ST_number
         try:
             secret = secret_number_and_NID.objects.get(NID = NID , st_number = ST_number)
             reg = teacher_login.objects.create(
@@ -167,6 +176,9 @@ def th_reg(request):
     return render(request , 'TeacherReg.html')
 
 def Teacher_about(request):
+
+    ST_NUMBER = request.session.get('ST_NUMBER')
+
     if request.method == "POST":
         name = request.POST.get('name')
         M_number = request.POST.get('M_number')
@@ -175,19 +187,23 @@ def Teacher_about(request):
         address = request.POST.get('addr')
         image = request.FILES.get('image')
 
-        infoAdd = TeacherData.objects.create(
+        infoAdd = TeacherDatas.objects.create(
             name = name,
             mobile = M_number,
             Join_date = join_date,
             add = address,
             sub = sub,
-            image =image
+            image =image,
+            ST_COODE = ST_NUMBER
         )
         infoAdd.save()
         return redirect('teacher-login')
-    return render(request, 'TeacherAboutForm.html')
+    return render(request, 'TeacherAboutForm.html', {'ST_NUMBER':ST_NUMBER})
 
+@never_cache
 def EditeStudentDataForm(request):
+    if 'teacher_login' not in request.session:
+        return redirect('teacher-login')
     if request.method == "POST":
         cls = request.POST.get('selected_class')
         request.session['selected_class'] = cls
@@ -216,12 +232,40 @@ class AllStudent(ListView):
 #         return render(request, 'AllStudent.html' , {'Data':Data})
 #     return render(request, 'AllStudent.html')
 
+@never_cache
 def teacherDash(request):
     if 'teacher_login' not in request.session:
         return redirect('teacher-login')
     username = request.session.get('username')
     print(username)
-    Teacherinfo = TeacherData.objects.filter(name = username).first()
-    return render(request, 'Teacherdashbord.html',{'Teacherinfo':Teacherinfo})
+    Teacherinfo = TeacherDatas.objects.filter(name = username).first()
+    teacherdata = TeacherDatas.objects.all()
+    print(teacherdata)
+    return render(request, 'Teacherdashbord.html',{'Teacherinfo':Teacherinfo, 'teacherData': teacherdata})
 
-# Create your views here.
+
+
+# def UpdateInfo(request , pk):
+#     info = get_object_or_404(TeacherDatas, pk = pk)
+#     if request.method == 'POST':
+#         name = request.POST.get('name')
+#         mobile = request.POST.get('number')
+        
+#         info.name = name
+#         info.mobile = mobile
+#         info.save()
+#         return redirect('th-dashbord')
+#     return render(request, 'TeacherDetailUpdateForm.html',{'info':info})
+
+def DeleteInfo(request):
+    if request.method == 'POST':
+        ST_CODE = request.POST.get('ST-CODE')
+        DATABASE_ST_CODE = secret_number_and_NID.objects.filter(st_number = ST_CODE)
+
+        if DATABASE_ST_CODE.exists():
+            TeacherAboutInfo = TeacherDatas.objects.filter(ST_COODE = ST_CODE)
+            TeacherAboutInfo.delete()
+            return redirect('th-about')
+        else:
+            return HttpResponse('ST-CODE not match')
+    return render(request , 'TeacherDetailUpdateForm.html')

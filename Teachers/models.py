@@ -9,14 +9,14 @@ class teacher_login(models.Model):
     def __str__(self):
         return self.username
     
-class TeacherData(models.Model):
+class TeacherDatas(models.Model):
     name = models.CharField(max_length=25)
     mobile = models.IntegerField()
     Join_date = models.DateTimeField()
     add = models.CharField(max_length=55)
     sub = models.CharField(max_length=20)
-    image = models.ImageField()
-
+    image = models.ImageField(upload_to='TeachersImage/')
+    ST_COODE = models.CharField(max_length=18)
     def __str__(self):
         return self.name
 
