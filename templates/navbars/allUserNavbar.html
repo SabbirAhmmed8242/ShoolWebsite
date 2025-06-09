@@ -63,18 +63,24 @@
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-8 text-gray-800 font-medium">
           <a href="{% url 'Home' %}" class="nav-link hover:text-blue-600">Home</a>
-          {% if request.session.student_id %}
-          <a href="{% url 'st-dashbord' %}" class="nav-link hover:text-blue-600">Dashboard</a>
+          <a href="{% url 'ResultFor' %}" class="nav-link hover:text-blue-600">Result</a>
+          <a href="#" class="nav-link hover:text-blue-600">About</a>
+          {% if request.session.student_id or request.session.teacher_login %}
+          <a href="{% url 'st-dashbord' %}" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-semibold shadow-sm">Dashboard</a>
           <a href="{% url 'st-logout' %}" class="btn btn-outline-danger rounded-pill px-4 py-2 fw-semibold shadow-sm">LogOut</a>
-          {% elif request.session.teacher_login%}
-          <a href="{% url 'th-dashbord' %}" class="nav-link hover:text-blue-600">Dashboard</a>
-          <a href="{% url 'th-logout' %}" class="btn btn-outline-danger rounded-pill px-4 py-2 fw-semibold shadow-sm">LogOut</a>
+          
+          
+          {% comment %} {% elif request.session.teacher_login %}
+          <a href="{% url 'th-dashbord' %}" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-semibold shadow-sm">Dashboard</a>
+          <a href="{% url 'th-logout' %}" class="btn btn-outline-danger rounded-pill px-4 py-2 fw-semibold shadow-sm">LogOut</a> {% endcomment %}
+          
+          
+          
           {% else %}
           <a href="{% url 'Teacher' %}" class="nav-link hover:text-blue-600">Teacher</a>
           <a href="{% url 'Student' %}" class="nav-link hover:text-blue-600">Student</a>
           {% endif %} 
-          <a href="{% url 'ResultFor' %}" class="nav-link hover:text-blue-600">Result</a>
-          <a href="#" class="nav-link hover:text-blue-600">About</a>
+          
 
           <!--Apply Button -->
           <a href="{% url 'NewApply' %}" class="relative inline-block px-6 py-2 font-semibold text-white bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-500 rounded-full shadow-md hover:shadow-lg hover:brightness-110 transition duration-300 ease-in-out overflow-hidden">
@@ -97,7 +103,7 @@
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="md:hidden hidden px-6 pb-4 pt-2 bg-white shadow space-y-2">
-      <a href="#" class="block text-gray-700 hover:text-blue-600">Home</a>
+      <a href="{% url 'Home' %}" class="block text-gray-700 hover:text-blue-600">Home</a>
       <a href="#" class="block text-gray-700 hover:text-blue-600">Student</a>
       <a href="#" class="block text-gray-700 hover:text-blue-600">Teacher</a>
       <a href="#" class="block text-gray-700 hover:text-blue-600">Result</a>

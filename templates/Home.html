@@ -60,14 +60,14 @@
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/media/HomePage/Banners/Banner2.jpeg" class="d-block w-100" alt="Slide 2">
+        <img src="/media/HomePage/Banners/Banner2.jpg" class="d-block w-100" alt="Slide 2">
         <div class="carousel-caption d-none d-md-block">
           <h5>Modern Classrooms</h5>
           <p>Equipped with smart boards and modern tools</p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/media/HomePage/Banners/Banner3.jpeg" class="d-block w-100" alt="Slide 3">
+        <img src="/media/HomePage/Banners/Banner3.jpg" class="d-block w-100" alt="Slide 3">
         <div class="carousel-caption d-none d-md-block">
           <h5>Knowledge Hub</h5>
           <p>Explore a world of learning at UNS library</p>
@@ -169,26 +169,36 @@
 
   </div>
 </div>
+<hr class="my-5">
+
+<div class="container mb-4">
+  <h3 class="text-center fw-bold mb-4">🎓 Our Teachers | Contact for help</h3>
+</div>
 
 <!-- TeachersCard -->
-
 {% for teacher in Teachers %}
 <div class="container mb-5">
   <div class="card mb-3 shadow-sm">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="{{teacher.image.url}}" class="img-fluid rounded-start h-100" alt="Teacher Image">
+    <div class="row g-0 align-items-center">
+      <div class="col-md-4 d-flex justify-content-center align-items-center" style="height: 250px;">
+        <img src="{{ teacher.image.url }}" 
+             class="rounded-circle shadow"
+             alt="Teacher Image"
+             style="width: 160px; height: 160px; object-fit: cover; border: 4px solid #0d6efd;">
       </div>
       <div class="col-md-8">
-        <div class="card-body">
-          <h1 class="card-title">{{ teacher.name }}</h1>
-          <p class="card-text">
-            {% comment %} <strong>Name:</strong> {{ teacher.name }} <br> {% endcomment %}
-            <strong>Contact:</strong> +880 {{ teacher.mobile }} <br>
-            <strong>Joining Date:</strong> {{ teacher.Join_date|date:"F j, Y" }}
-          </p>
-          <p class="card-text"><small class="text-muted">Last updated {{ teacher.updated_at|timesince }} ago</small></p>
-          <a href="" class="btn btn-outline-primary btn-sm">View</a>
+        <div class="card-body h-100 d-flex flex-column justify-content-between">
+          <div>
+            <h4 class="card-title fw-bold">{{ teacher.name }}</h4>
+            <p class="card-text mb-2">
+              <strong>Contact:</strong> +880 {{ teacher.mobile }} <br>
+              <strong>Joining Date:</strong> {{ teacher.Join_date|date:"F j, Y" }}
+            </p>
+          </div>
+          <div>
+            <p class="card-text mb-2"><small class="text-muted">Last updated {{ teacher.updated_at|timesince }} ago</small></p>
+            <a href="#" class="btn btn-outline-primary btn-sm">View</a>
+          </div>
         </div>
       </div>
     </div>

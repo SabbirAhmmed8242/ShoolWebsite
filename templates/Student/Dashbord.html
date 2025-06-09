@@ -30,6 +30,12 @@ Dashboard
     border-radius: 12px;
     font-weight: 500;
     font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .dashboard-btn:hover {
+    background-color: #0d6efd !important;
+    color: white !important;
   }
 
   .card-icon {
@@ -44,6 +50,50 @@ Dashboard
     object-fit: cover;
     border-radius: 50%;
     border: 3px solid #0d6efd;
+    box-shadow: 0 0 8px rgba(13, 110, 253, 0.4);
+  }
+
+  /* ID Card Style */
+  .id-card {
+    background: #0d6efd;
+    color: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: left;
+  }
+
+  .id-card h5 {
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+  }
+
+  .id-card p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .view-id-btn {
+    background-color: white;
+    color: #0d6efd;
+    border: 2px solid white;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 6px 16px;
+    margin-top: 12px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  .view-id-btn:hover {
+    background-color: #ffffffcc;
+    text-decoration: none;
+    color: #0a58ca;
   }
 </style>
 
@@ -53,7 +103,6 @@ Dashboard
 
     <!-- Dashboard Buttons -->
     <div class="row g-4 text-center mb-5">
-      <!-- Home -->
       <div class="col-md-3 col-sm-6">
         <div class="card dashboard-card p-4">
           <div class="card-icon">🏠</div>
@@ -61,8 +110,6 @@ Dashboard
           <a href="{% url 'Home' %}" class="btn btn-outline-primary dashboard-btn">Go</a>
         </div>
       </div>
-
-      <!-- View -->
       <div class="col-md-3 col-sm-6">
         <div class="card dashboard-card p-4">
           <div class="card-icon">📄</div>
@@ -70,8 +117,6 @@ Dashboard
           <a href="{% url 'ResultFor' %}" class="btn btn-outline-success dashboard-btn">View</a>
         </div>
       </div>
-
-      <!-- Marksheet -->
       <div class="col-md-3 col-sm-6">
         <div class="card dashboard-card p-4">
           <div class="card-icon">📊</div>
@@ -79,8 +124,6 @@ Dashboard
           <a href="#" class="btn btn-outline-warning text-dark dashboard-btn">Download</a>
         </div>
       </div>
-
-      <!-- Logout -->
       <div class="col-md-3 col-sm-6">
         <div class="card dashboard-card p-4">
           <div class="card-icon">🔓</div>
@@ -95,12 +138,12 @@ Dashboard
     <div class="row justify-content-center">
       <div class="col-md-7">
         <div class="card dashboard-card p-4 d-flex align-items-center flex-md-row flex-column text-center text-md-start">
-          <img src="" alt="Profile"
-               class="profile-img mb-3 mb-md-0 me-md-4">
-          <div>
-            <h4 class="fw-semibold mb-1"></h4>
-            <p class="mb-1 text-muted">🎓 Student ID: </p>
-            <p class="mb-0 text-muted">📧 </p>
+          <img src="{{profile.image.url}}" alt="Profile" class="profile-img mb-3 mb-md-0 me-md-4">
+          <div class="flex-grow-1">
+            <h4 class="fw-semibold mb-1">{{profile.name}}</h4>
+            <p class="mb-1 text-muted">🎓 Student ID: {{profile.studentID}}</p>
+            <p class="mb-0 text-muted">📧 {{profile.email}}</p>
+            <a href="{% url 'ID-CARD' %}" class="view-id-btn">Print ID Card</a>
           </div>
         </div>
       </div>

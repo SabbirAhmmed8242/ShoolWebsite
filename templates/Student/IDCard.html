@@ -1,0 +1,126 @@
+{% extends "StudentsNav.html" %}
+{% block title %}ID-CARD{% endblock title %}
+
+{% block Content %}
+<style>
+  .id-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 0;
+    background: linear-gradient(to right, #eef2f3, #ffffff);
+  }
+
+  .id-card {
+    width: 450px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    padding: 30px 25px;
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+    position: relative;
+  }
+
+  .school-header {
+    border-bottom: 2px solid #0d6efd;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .school-header h4 {
+    font-weight: bold;
+    color: #0d6efd;
+    margin: 0;
+  }
+
+  .profile-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #0d6efd;
+    margin: 0 auto 15px;
+    display: block;
+  }
+
+  .info-block p {
+    margin: 6px 0;
+    font-size: 0.95rem;
+  }
+
+  .responsibility {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    border-left: 4px solid #0d6efd;
+  }
+
+  .id-footer {
+    border-top: 1px dashed #ccc;
+    padding-top: 12px;
+    margin-top: 20px;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #666;
+  }
+
+  @media print {
+    .print-btn {
+      display: none !important;
+    }
+
+    body {
+      background: white;
+    }
+  }
+</style>
+
+<div class="id-card-container">
+  <div class="id-card">
+    <!-- School Header -->
+    <div class="school-header">
+      <h4>{{ profile.school_name|default:"Your School Name" }}</h4>
+    </div>
+
+    <!-- Profile Picture -->
+    <img src="{{ profile.image.url }}" alt="Student Photo" class="profile-img">
+
+    <!-- Name and ID -->
+    <div class="text-center mb-3">
+      <h5 class="fw-semibold mb-1">{{profile.name}}</h5>
+      <p class="text-muted mb-0"><strong>ID: {{ID}}</strong> {{ profile.studentID }}</p>
+    </div>
+
+    <!-- Info -->
+    <div class="info-block mt-3">
+      <p><strong>Class:</strong> {{ profile.cls }}</p>
+      <p><strong>Father's Name:</strong> {{ profile.father }}</p>
+      <p><strong>Mother's Name:</strong> {{ profile.mother}}</p>
+      <p><strong>Address:</strong> {{ profile.address }}</p>
+      <p><strong>Mobile:</strong> {{ profile.mobile }}</p>
+    </div>
+
+    <!-- Responsibility -->
+    <div class="responsibility">
+      <strong>Responsibility:</strong> UNS- authority<br>
+      If you find this card anywhere, please submit it to the school authority.
+    </div>
+
+    <!-- Footer -->
+    <div class="id-footer">
+      This card is issued by the authority of {{ profile.school_name }}.
+    </div>
+  </div>
+</div>
+
+<!-- Print Button -->
+<div class="text-center mt-4 print-btn">
+  <button class="btn btn-primary px-4 py-2" onclick="window.print()">
+    🖨️ Print ID Card
+  </button>
+</div>
+{% endblock Content %}

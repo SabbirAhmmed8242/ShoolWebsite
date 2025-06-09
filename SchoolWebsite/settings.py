@@ -43,6 +43,12 @@ INSTALLED_APPS = [
     'rest_framework'
 ]
 
+SESSION_COOKIE_AGE = 600
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+SESSION_SAVE_EVERY_REQUEST = False
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -51,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'Students.middleware.CustomSessionAutoLogoutMiddleware'
 ]
 
 ROOT_URLCONF = 'SchoolWebsite.urls'

@@ -22,6 +22,7 @@ def th_login(request):
         except teacher_login.DoesNotExist:
             return HttpResponse('username invalid')
 
+
         if password != Teacher.password:
             return HttpResponse('Password not match')
 

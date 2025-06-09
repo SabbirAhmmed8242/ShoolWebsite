@@ -16,6 +16,12 @@ A simple school management system built with Django.<br>
    - Mobile Number: 1782425635(Use mobile number without 0)<br>
 
 
+👨‍🏫 Student Test Account<br>
+   - Username: Sabbir Ahmmed<br>
+   - Password: 147258<br>
+   - Student ID: 2025610001<br>
+
+
 🔐 Teacher Registration & Secret Code System<br>
 To prevent unauthorized access, the teacher registration process includes a Secret Number field.<br>
        ✅ Only the admin can generate and manage secret numbers.<br>
@@ -28,6 +34,8 @@ To prevent unauthorized access, the teacher registration process includes a Secr
        ✅ Admin panel to manage teachers, students, and classes<br>
        ✅ Secure teacher registration with secret code<br>
        ✅ Student management system<br>
+       ✅ Auto logout after 10 minutes (if user not active)
+       ✅ Auto logout when browser close
        🚫 Update Delete student or teacher information<br>
        🚫 Class scheduling<br>
        🚫 Grades and reports system<br>

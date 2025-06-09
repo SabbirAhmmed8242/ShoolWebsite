@@ -1,17 +1,22 @@
 {% extends "StudentsNav.html" %}
 {% block title %}Details{% endblock title %}
-{% block content %}
+{% block Content %}
 
 <div class="container mt-5">
     <div class="card shadow rounded-4 p-4">
         <h3 class="mb-4 text-center">Student Information Form</h3>
-        <form method="POST" enctype="multipart/form-data">
+
+        {% if error %}
+        <div class="alert alert-danger text-center">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST">
             {% csrf_token %}
 
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="studentID" class="form-label">Student ID</label>
-                    <input type="text" class="form-control" id="studentID" name="studentID" required>
+                    <input type="text" class="form-control" id="studentID" name="studentID" value="{{ StdentID }}" readonly>
                 </div>
                 <div class="col-md-6">
                     <label for="name" class="form-label">Student Name</label>
@@ -33,7 +38,7 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="email" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
+                    <input type="email" class="form-control" id="email" name="mail" required>
                 </div>
                 <div class="col-md-6">
                     <label for="mobile" class="form-label">Phone Number</label>
@@ -53,10 +58,7 @@
                 </select>
             </div>
 
-            <div class="mb-4">
-                <label for="image" class="form-label">Upload Image</label>
-                <input class="form-control" type="file" id="image" name="image" accept="image/*" required>
-            </div>
+            <!-- No need to ask for image again, as it comes from session -->
 
             <div class="text-center">
                 <button type="submit" class="btn btn-primary px-5">Submit</button>
@@ -65,4 +67,4 @@
     </div>
 </div>
 
-{% endblock content %}
+{% endblock Content %}
