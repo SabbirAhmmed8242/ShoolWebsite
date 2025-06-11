@@ -1,0 +1,172 @@
+{% extends "allUserNavbar.html" %}
+{% block title %}Apply Now{% endblock title %}
+{% block content %}
+
+<div class="apply-form-wrapper">
+    <div class="apply-form">
+        <h2>🎓 Student Admission Form</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Father's Name</label>
+                <input type="text" name="father" required>
+            </div>
+
+            <div class="form-group">
+                <label>Mother's Name</label>
+                <input type="text" name="mother" required>
+            </div>
+
+            <div class="form-group">
+                <label>Mobile Number</label>
+                <input type="tel" name="mobile" required pattern="[0-9]{11}" placeholder="e.g. 01XXXXXXXXX">
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label>Select Course</label>
+                <select name="course" id="course" onchange="updateSubjects()" required>
+                    <option value="">-- Select Course --</option>
+                    <option value="Science">Science</option>
+                    <option value="Commerce">Commerce</option>
+                    <option value="Business">Business Studies</option>
+                    <option value="Humanities">Humanities</option>
+                    <option value="ICT">ICT</option>
+                    <option value="Islamic">Islamic Studies</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="subject-div" style="display: none;">
+                <label>Select Subject</label>
+                <select name="subject" id="subject">
+                    <option value="">-- Select Subject --</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Upload Certificate (300x300 image)</label>
+                <input type="file" name="certificate" accept="image/*" required>
+            </div>
+
+            <div class="form-submit">
+                <button type="submit">📨 Submit Application</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const subjects = {
+        Science: ["Physics", "Chemistry", "Biology", "Higher Math"],
+        Commerce: ["Accounting", "Finance", "Management"],
+        Business: ["Marketing", "Banking", "Economics"],
+        Humanities: ["History", "Civics", "Geography"],
+        ICT: ["Computer Basics", "Networking", "Programming"],
+        Islamic: ["Quran", "Hadith", "Fiqh"]
+    };
+
+    function updateSubjects() {
+        const course = document.getElementById("course").value;
+        const subjectDiv = document.getElementById("subject-div");
+        const subjectSelect = document.getElementById("subject");
+
+        subjectSelect.innerHTML = '<option value="">-- Select Subject --</option>';
+
+        if (subjects[course]) {
+            subjects[course].forEach(function(subject) {
+                const option = document.createElement("option");
+                option.value = subject;
+                option.text = subject;
+                subjectSelect.appendChild(option);
+            });
+            subjectDiv.style.display = "block";
+        } else {
+            subjectDiv.style.display = "none";
+        }
+    }
+</script>
+
+<style>
+    /* Scoped styles only for .apply-form-wrapper */
+
+    .apply-form-wrapper {
+        display: flex;
+        justify-content: center;
+        padding: 30px 15px;
+        background: #f4f7fa;
+    }
+
+    .apply-form {
+        background-color: #ffffff;
+        padding: 30px;
+        max-width: 600px;
+        width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .apply-form h2 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #34495e;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 15px;
+        border-radius: 6px;
+        border: 1px solid #bdc3c7;
+        transition: 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+        border-color: #2980b9;
+        outline: none;
+        box-shadow: 0 0 5px rgba(41, 128, 185, 0.3);
+    }
+
+    .form-submit {
+        text-align: center;
+    }
+
+    .form-submit button {
+        background-color: #3498db;
+        color: #fff;
+        padding: 12px 25px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .form-submit button:hover {
+        background-color: #2c80b4;
+    }
+</style>
+
+{% endblock content %}

@@ -6,6 +6,9 @@ def home(request):
     teacherData = TeacherDatas.objects.all()
     return render(request , 'Home.html',{'Teachers':teacherData})
 
+def couse_apply(request):
+    return render(request, 'CourseApplyForm.html')
+
 def Apply_student(request):
     Succes=''
     if request.method == "POST":

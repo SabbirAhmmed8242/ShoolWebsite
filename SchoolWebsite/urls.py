@@ -6,6 +6,7 @@ from .import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='Home'),
+    path('couse-apply/', views.couse_apply, name = 'apply-course'),
     path('apply/', views.Apply_student, name='NewApply'),
     path('students/', include('Students.urls')),
     path('teachers/', include('Teachers.urls')),

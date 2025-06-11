@@ -4,9 +4,14 @@ from django.http import HttpResponse
 from django.contrib.auth.hashers import check_password,make_password
 from Results.models import ClassEightResults,ClassSevenResults,ClassNineResults,ClassSixResults,ClassTenResults
 from django.views.generic import ListView,CreateView
+import pandas as pd
 
 
 def Student(request):
+    if 'student_id' in request.session:
+        return redirect('st-dashbord')
+    if 'teacher_login' in request.session:
+        return redirect('th-dashbord')
     return render(request, 'Student.html')
 
 def student_login(request):
