@@ -9,9 +9,15 @@ from django import forms
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
 def teachers(request):
+    if 'student_id' in request.session:
+        return redirect('st-dashbord')
+    if 'teacher_login' in request.session:
+        return redirect('th-dashbord')
     return render(request, 'Teachers.html')
 
 def th_login(request):
+    if 'student_id' in request.session:
+        return redirect('st-dashbord')
     if request.method == "POST":
         username   = request.POST.get("username").strip()
         password   = request.POST.get("password").strip()

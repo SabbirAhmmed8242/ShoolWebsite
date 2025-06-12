@@ -41,6 +41,9 @@ def student_login(request):
             return render(request, 'StudentLogin.html', {'error': 'Invalid ID'})
     return render(request, 'StudentLogin.html')
 
+def view_profile(request):
+    return render(request, 'Profile.html')
+
 def StudentRegValidityCheck(request):
     if 'teacher_login' in request.session:
         return redirect('th-dashbord')

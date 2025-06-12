@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'Students',
     'Teachers',
     'Results',
-    'rest_framework'
+    'rest_framework',
+    'AdminPanel',
 ]
 
 SESSION_COOKIE_AGE = 600
@@ -81,7 +82,8 @@ TEMPLATES = [
                  os.path.join(BASE_DIR, 'Teachers/templates'),
                  os.path.join(BASE_DIR, 'Teachers/templates/TeacherNavBar'),
                  
-                 os.path.join(BASE_DIR, 'Results/template'),],
+                 os.path.join(BASE_DIR, 'Results/template'),
+                 os.path.join(BASE_DIR, 'AdminPanel/template'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
