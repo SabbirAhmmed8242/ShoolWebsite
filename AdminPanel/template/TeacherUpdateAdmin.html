@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}UpdateTeacherInfo{% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="card shadow-lg border-0 p-4 rounded-4">
+    <h3 class="text-gradient mb-4">
+      <i class="bi bi-pencil-square me-2"></i> Update Teacher Info
+    </h3>
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label class="form-label">Full Name</label>
+          <input type="text" name="name" class="form-control rounded-pill" value="{{ teacher.name }}" required>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Mobile Number</label>
+          <input type="text" name="mobile" class="form-control rounded-pill" value="{{ teacher.mobile }}" required>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label class="form-label">Subject</label>
+          <select name="subject" class="form-select rounded-pill" required>
+            <option disabled>Choose Subject</option>
+            <option value="Math" {% if teacher.sub == 'Math' %}selected{% endif %}>Mathematics</option>
+            <option value="English" {% if teacher.sub == 'English' %}selected{% endif %}>English</option>
+            <option value="Bangla" {% if teacher.sub == 'Bangla' %}selected{% endif %}>Bangla</option>
+            <option value="Science" {% if teacher.sub == 'Science' %}selected{% endif %}>Science</option>
+            <option value="ICT" {% if teacher.sub == 'ICT' %}selected{% endif %}>ICT</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">ST-NUMBER</label>
+          <input type="text" name="st_number" class="form-control rounded-pill" value="{{ teacher.ST_CODE }}" required>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label class="form-label">NID</label>
+          <input type="text" name="nid" class="form-control rounded-pill" value="{{ teacher.NID }}" required>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Join Date</label>
+          <input type="date" name="join_date" class="form-control rounded-pill" value="{{ teacher.Join_date|date:'Y-m-d' }}" required>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Address</label>
+        <textarea name="address" class="form-control rounded-4" rows="3" required>{{ teacher.add }}</textarea>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label">Profile Image</label><br>
+        {% if teacher.image %}
+          <img src="{{ teacher.image.url }}" alt="Current Image" class="mb-2 rounded" style="width: 100px;">
+        {% endif %}
+        <input type="file" name="image" class="form-control rounded-pill">
+      </div>
+
+      <div class="text-end">
+        <button type="submit" class="btn btn-success px-4 py-2 rounded-pill shadow-sm">
+          <i class="bi bi-upload me-2"></i>Update Info
+        </button>
+      </div>
+    </form>
+    {% if err %}{{err}}{% endif %}
+  </div>
+</div>
+
+<style>
+  .text-gradient {
+    background: linear-gradient(to right, #00c9ff, #92fe9d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+  }
+</style>
+{% endblock content %}

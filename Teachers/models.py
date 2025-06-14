@@ -12,11 +12,12 @@ class teacher_login(models.Model):
 class TeacherDatas(models.Model):
     name = models.CharField(max_length=25)
     mobile = models.IntegerField()
-    Join_date = models.DateTimeField()
+    Join_date = models.DateField()
     add = models.CharField(max_length=55)
     sub = models.CharField(max_length=20)
     image = models.ImageField(upload_to='TeachersImage/')
     ST_COODE = models.CharField(max_length=18)
+    NID = models.IntegerField(null=True)
     def __str__(self):
         return self.name
 

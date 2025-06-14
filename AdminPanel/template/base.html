@@ -1,0 +1,90 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}UNS Admin Panel{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #f5f8fc;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 80px;
+      background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+      color: white;
+      transition: width 0.4s;
+      overflow-x: hidden;
+      z-index: 1001;
+    }
+
+    .sidebar:hover {
+      width: 240px;
+    }
+
+    .sidebar .nav-link {
+      color: #ccc;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      border-left: 4px solid transparent;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .sidebar .nav-link:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-left: 4px solid #00c9ff;
+      color: #fff;
+    }
+
+    .sidebar i {
+      font-size: 1.3rem;
+      width: 30px;
+    }
+
+    .sidebar span {
+      display: none;
+      margin-left: 15px;
+    }
+
+    .sidebar:hover span {
+      display: inline;
+    }
+
+    .main-content {
+      margin-left: 80px;
+      padding: 1.5rem;
+      transition: margin-left 0.4s;
+    }
+
+    .sidebar:hover ~ .main-content {
+      margin-left: 240px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Include sidebar -->
+{% include 'sidebar.html' %}
+
+<!-- Main Content -->
+<div class="main-content">
+  {% block content %}
+  {% endblock content %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock title %}
+{% block content %}
+
+<style>
+  body {
+    margin: 0;
+    background: linear-gradient(to bottom right, #f6f9fc, #e9eff5);
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .main-content {
+    margin-left: 80px;
+    padding: 1.5rem;
+    transition: margin-left 0.4s;
+  }
+
+  .sidebar:hover ~ .main-content {
+    margin-left: 240px;
+  }
+
+  .navbar {
+    background: white;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+  }
+
+  .navbar-brand {
+    font-weight: bold;
+    color: #00c9ff;
+  }
+
+  .card, .card-stat, .activity-log, .notice-board, .quick-actions, .data-table {
+    border: none;
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    transition: all 0.3s;
+  }
+
+  .card:hover {
+    transform: scale(1.02);
+  }
+
+  .card-icon {
+    font-size: 2.5rem;
+    padding: 15px;
+    border-radius: 15px;
+    color: white;
+  }
+
+  .bg-purple { background: linear-gradient(135deg, #9d50bb, #6e48aa); }
+  .bg-green { background: linear-gradient(135deg, #00b09b, #96c93d); }
+  .bg-orange { background: linear-gradient(135deg, #ff6a00, #ee0979); }
+
+  .quick-actions button {
+    margin: 0.25rem;
+    border-radius: 12px;
+  }
+
+  .notice-board ul {
+    padding-left: 20px;
+  }
+
+  .data-table table {
+    width: 100%;
+  }
+
+  .data-table th {
+    font-weight: bold;
+    background: #f0f4f7;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1rem;
+    color: #888;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+  }
+</style>
+
+<div class="main-content">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg px-4 py-3">
+    <a class="navbar-brand" href="#"><i class="bi bi-shield-check me-2"></i>UNS Admin Panel</a>
+  </nav>
+
+  <!-- Summary Cards -->
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card d-flex align-items-center">
+        <div class="card-icon bg-purple me-3"><i class="bi bi-person-badge-fill"></i></div>
+        <div>
+          <h6 class="mb-0">Total Teachers</h6>
+          <small class="text-muted"> {{teachers | length}} Active</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card d-flex align-items-center">
+        <div class="card-icon bg-green me-3"><i class="bi bi-people-fill"></i></div>
+        <div>
+          <h6 class="mb-0">Total Students</h6>
+          <small class="text-muted">{{students|length}} Enrolled</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card d-flex align-items-center">
+        <div class="card-icon bg-orange me-3"><i class="bi bi-clock-history"></i></div>
+        <div>
+          <h6 class="mb-0">Pending Requests</h6>
+          <small class="text-muted">5 Waiting</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="row g-4 mt-4">
+    <div class="col-md-12">
+      <div class="quick-actions">
+        <h5>Quick Actions</h5>
+        <a href="{% url 'add-teacher' %}" class="text-decoration-none">
+          <button class="btn btn-outline-primary">➕ Add Teacher</button>
+        </a>
+        <button class="btn btn-outline-success">➕ Add Student</button>
+        <button class="btn btn-outline-warning">📤 Export Report</button>
+        <button class="btn btn-outline-dark">⚙️ Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notice Board & Activity Log -->
+  <div class="row g-4 mt-2">
+    <div class="col-md-6">
+      <div class="notice-board">
+        <h5>📢 Notice Board</h5>
+        <ul>
+          <li>School will be closed on Friday</li>
+          <li>Monthly test starts from 20th June</li>
+          <li>New teacher orientation this Sunday</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="activity-log">
+        <h5>🕒 Recent Activities</h5>
+        <div class="activity-item"><i class="bi bi-person-plus-fill"></i><span>Rafiul enrolled to Class 8</span></div>
+        <div class="activity-item"><i class="bi bi-journal-check"></i><span>Ms. Fatema submitted weekly report</span></div>
+        <div class="activity-item"><i class="bi bi-gear-fill"></i><span>Admin updated fees module</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Data Table -->
+  <div class="row g-4 mt-3">
+    <div class="col-md-12">
+      <div class="data-table">
+        <h5>🧾 Latest Registrations</h5>
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Role</th>
+              <th>Class</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Faria Rahman</td><td>Student</td><td>Class 6</td><td>2025-06-10</td></tr>
+            <tr><td>Sabbir Hossain</td><td>Student</td><td>Class 9</td><td>2025-06-09</td></tr>
+            <tr><td>Mr. Alam</td><td>Teacher</td><td>Science</td><td>2025-06-08</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 UNS School Management | All rights reserved.
+  </footer>
+</div>
+
+{% endblock content %}

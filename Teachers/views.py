@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
+from django.contrib.auth.hashers import make_password, check_password
 from django.http import HttpResponse
-from . models import teacher_login,secret_number_and_NID,TeacherDatas
+from . models import teacher_login,TeacherDatas,secret_number_and_NID
 from Results.models import ClassSixResults,ClassSevenResults,ClassEightResults,ClassTenResults,ClassNineResults
 from Students.models import StudentDetails
 from django.views.generic import ListView, UpdateView, DeleteView, CreateView
@@ -18,6 +19,8 @@ def teachers(request):
 def th_login(request):
     if 'student_id' in request.session:
         return redirect('st-dashbord')
+    if 'teacher_login' in request.session:
+        return redirect('th-dashbord')
     if request.method == "POST":
         username   = request.POST.get("username").strip()
         password   = request.POST.get("password").strip()
@@ -29,15 +32,11 @@ def th_login(request):
             return HttpResponse('username invalid')
 
 
-        if password != Teacher.password:
-            return HttpResponse('Password not match')
-
-        if nb_number != str(Teacher.m_number).strip():
-            print(nb_number)
-            print(Teacher.m_number)
-            return HttpResponse('Mobile number missmatch')
-        request.session["teacher_login"] = Teacher.id
-        return redirect('th-dashbord')
+        if check_password(password, Teacher.password):
+            if nb_number != str(Teacher.m_number).strip():
+                return HttpResponse('Mobile number missmatch')
+            request.session["teacher_login"] = Teacher.id
+            return redirect('th-dashbord')
     return render(request, 'TeacherLogin.html')
 
 @never_cache
@@ -168,6 +167,7 @@ def th_reg(request):
         password = request.POST.get('password')
 
         request.session['ST_NUMBER'] = ST_number
+        request.session['NID'] = NID
         try:
             secret = secret_number_and_NID.objects.get(NID = NID , st_number = ST_number)
             reg = teacher_login.objects.create(
@@ -185,6 +185,7 @@ def th_reg(request):
 def Teacher_about(request):
 
     ST_NUMBER = request.session.get('ST_NUMBER')
+    NID = request.session.get('NID')
 
     if request.method == "POST":
         name = request.POST.get('name')
@@ -201,7 +202,8 @@ def Teacher_about(request):
             add = address,
             sub = sub,
             image =image,
-            ST_COODE = ST_NUMBER
+            ST_COODE = ST_NUMBER,
+            NID = NID
         )
         infoAdd.save()
         return redirect('teacher-login')
